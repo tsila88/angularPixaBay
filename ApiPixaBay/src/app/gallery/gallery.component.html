@@ -1,0 +1,39 @@
+<div class="card mb-5">
+    <div class="card-header" style="color: cornflowerblue;">
+        <strong>
+            <h5> Visualisation des données </h5>
+        </strong>
+        <br>
+
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" name="motCle" [(ngModel)]="motCle" placeholder="Chercher"
+                aria-label="Chercher">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                (click)="onSearch(motCle)">Search</button>
+        </form>
+
+    </div>
+    <div class="card-body ">
+
+
+        <div class="card-columns">
+            <div class="card cadre" *ngFor="let data of datas?.hits">
+                <div class="card-header" style="color: cornflowerblue">
+                    <img class="rounded-circle img-fluid" src="{{data.userImageURL}}" width="50px">
+                    <strong> Artiste: </strong> {{data.user}}
+                </div>
+
+                <div class="card-body1 ">
+                    <br>
+                    <img src="{{data.previewURL}}" class="img-fluid m-2">
+                    <br>
+                    <br>
+                    <div class="m-2"> <strong> Tags: </strong> {{data.tags}}</div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
