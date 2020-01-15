@@ -12,9 +12,11 @@ export class GalleryComponent implements OnInit {
   motCle: string = "";
   datas: any;
   currentPage: number = 1;
-  size: number;
+  size: number = 10;
   pages:Array<number>=[];
+  pagesLenght: number;
   totalPages:number;
+  totalPages1:number;
   
   constructor(
     public activedRoute: ActivatedRoute,
@@ -23,9 +25,9 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSearch() {
+  onSearch(dataForm) {
     this.galleryService
-      .searchByMotCle(this.motCle,this.currentPage, this.size)
+      .searchByMotCle(this.motCle, this.size,this.currentPage)
       .subscribe(
         data => {
           this.datas = data;
@@ -33,11 +35,15 @@ export class GalleryComponent implements OnInit {
           console.log("Get datas from the Api");
           console.log(data);
           this.totalPages = this.datas.totalHits/this.size;
-
-          if (this.datas.totalHits % this.size != 0 ) ++this.totalPages;
           this.pages=new Array(this.totalPages);
+          this.totalPages1 = this.datas.totalHits;
         },
         err => console.error(err)
       );
+  }
+
+  goTopage(i:number){
+    this.currentPage=i+1;
+    this.onSearch({motCle:this.motCle});
   }
 }

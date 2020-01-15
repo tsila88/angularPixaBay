@@ -9,7 +9,7 @@
             <input class="form-control mr-sm-2" type="search" name="motCle" [(ngModel)]="motCle" placeholder="Chercher"
                 aria-label="Chercher">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-                (click)="onSearch(motCle)">Search</button>
+                (click)="onSearch(motCle)">  Search</button>
         </form>
 
     </div>
@@ -18,15 +18,17 @@
 
         <div class="card-columns">
             <div class="card cadre" *ngFor="let data of datas?.hits">
-                <div class="card-header" style="color: cornflowerblue">
-                    <img class="rounded-circle img-fluid" src="{{data.userImageURL}}" width="50px">
-                    <strong> Artiste: </strong> {{data.user}}
+                <div class="card-header" style="color: cornflowerblue" >
+                  
+                        <img class="rounded-circle img-fluid" src="{{data.userImageURL}}" width="50px">
+                        <strong> Artiste: </strong> {{data.user}}
+                   
                 </div>
 
                 <div class="card-body1 ">
                     <br>
-                    <img src="{{data.previewURL}}" class="img-fluid m-2">
-                    <br>
+                    <img src="{{data.previewURL}}" class="img-fluid m-2"  >
+                    
                     <br>
                     <div class="m-2"> <strong> Tags: </strong> {{data.tags}}</div>
 
@@ -36,4 +38,12 @@
 
         </div>
     </div>
+
+</div>
+<div class="container">
+    <ul class="nav nav-pills">
+        <li *ngFor="let page of pages; let i =  index" >
+        <a (click) = "goTopage(i)" [ngClass]="{'active': currentPage==i+1,'nav-link':true}">{{i}}</a>
+        </li>
+    </ul>
 </div>
